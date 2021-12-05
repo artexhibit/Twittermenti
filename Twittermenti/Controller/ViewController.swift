@@ -16,18 +16,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func predictPressed(_ sender: Any) {
-        if let searchText = textField.text {
-            tweetFetcher.fetchTweets(with: searchText) { (tweets, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                } else {
-                    if let realTweets = tweets {
-                        let sentimentScore = self.tweetPredictor.makePredictions(with: realTweets)
-                        self.sentimentLabel.text = self.tweetUIUpdater.updateUI(with: sentimentScore)
+        if textField.text != "" {
+            if let searchText = textField.text {
+                tweetFetcher.fetchTweets(with: searchText) { (tweets, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    } else {
+                        if let realTweets = tweets {
+                            let sentimentScore = self.tweetPredictor.makePredictions(with: realTweets)
+                            self.sentimentLabel.text = self.tweetUIUpdater.updateUI(with: sentimentScore)
+                        }
                     }
                 }
             }
+        } else {
+            textField.placeholder = "Type a word with @ or #"
         }
     }
 }
