@@ -3,11 +3,12 @@ import Foundation
 import SwifteriOS
 
 struct TweetFetcher {
+    
     private let tweetCount = 100
     private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as! String
     private let apiSecret = Bundle.main.infoDictionary?["API_SECRET"] as! String
     
-    func fetchTweets(with searchText: String, completion: @escaping ([TweetSentimentClassifierInput]?, Error?) -> Void) {
+    func fetchTweets(with searchText: String, completion: @escaping ([TweetSentimentClassifierInput]?, Error?) -> ()) {
         let swifter = Swifter(consumerKey: apiKey, consumerSecret: apiSecret)
         swifter.searchTweet(using: searchText, lang: "en", count: tweetCount, tweetMode: .extended) {(results, searchMetadata) in
             var tweets = [TweetSentimentClassifierInput]()

@@ -3,13 +3,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var tweetFetcher = TweetFetcher()
-    var tweetPredictor = TweetPredictor()
-    var tweetUIUpdater = TweetUIUpdater()
-    
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sentimentLabel: UILabel!
+    
+    var tweetFetcher = TweetFetcher()
+    var tweetPredictor = TweetPredictor()
+    var tweetUIUpdater = TweetUIUpdater()
     
     override func viewDidLoad() {
         

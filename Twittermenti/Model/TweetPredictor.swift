@@ -3,6 +3,7 @@ import Foundation
 import CoreML
 
 struct TweetPredictor {
+    
    private let sentimentClassifier = try! TweetSentimentClassifier(configuration: MLModelConfiguration())
     
     func makePredictions(with tweets: [TweetSentimentClassifierInput]) -> Int {
