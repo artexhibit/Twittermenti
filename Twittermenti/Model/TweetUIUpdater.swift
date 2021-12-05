@@ -2,6 +2,7 @@
 import Foundation
 
 struct TweetUIUpdater {
+    
     func updateUI(with sentimentScore: Int) -> String {
         if sentimentScore > 20 {
             return "😍"
