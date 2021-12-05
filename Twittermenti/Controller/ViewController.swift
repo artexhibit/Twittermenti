@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     var tweetUIUpdater = TweetUIUpdater()
     
     override func viewDidLoad() {
-        
+        textField.delegate = self
     }
     
     @IBAction func predictPressed(_ sender: Any) {
@@ -29,5 +29,12 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
     }
 }
