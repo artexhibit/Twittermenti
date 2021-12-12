@@ -1,6 +1,6 @@
 
 import Foundation
-import SwifteriOS
+import Swifter
 
 struct TweetFetcher {
     
