@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     @IBAction func predictPressed(_ sender: Any) {
         if textField.text != "" {
+            textField.endEditing(true)
             if let searchText = textField.text {
                 tweetFetcher.fetchTweets(with: searchText) { (tweets, error) in
                     if error != nil {
@@ -38,12 +39,17 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: - TextField delegate Methods
+
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
     }
 }
+
+//MARK: - Keyboard Appearance Methods
+
 extension ViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
