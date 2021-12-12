@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         textField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func predictPressed(_ sender: Any) {
@@ -40,5 +42,19 @@ extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
+    }
+}
+extension ViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y = 0 - keyboardHeight
+        }
+    }
+    
+    @objc func keyboardWillHide() {
+        self.view.frame.origin.y = 0
     }
 }
